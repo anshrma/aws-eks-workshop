@@ -11,7 +11,7 @@ resources:
     configuration:
       registry: Artifactory
       sourceRepository: workshop-docker-local
-      imageName: partnership-workshop-docker.jfrog.io/workshop-app
+      imageName: anshrma1.jfrog.io/workshop-app
       imageTag: ${run_number}
       autoPull: true
   - name: workshop_build_info
