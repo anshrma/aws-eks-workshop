@@ -76,7 +76,7 @@ pipelines:
             - name: workshop_build_info
           outputResources:
             - name: promoted_workshop_build_info
-      - name: eks_deploy
+      - name: test_eks_deploy
         type: Bash
         configuration:
           integrations:
@@ -101,7 +101,7 @@ pipelines:
             - while [ -z "$url" ]; do url=$(kubectl describe service workshop-app --namespace aws-eks-workshop | grep 'LoadBalancer Ingress:' | awk '{printf "https://%s",$3;}'); sleep 2; done
             - echo "$url"
             - echo "Workshop App launched!"
-      - name: eks_deploy
+      - name: prod_eks_deploy
         type: Bash
         configuration:
           integrations:
