@@ -110,7 +110,7 @@ pipelines:
           inputResources:
             - name: gitRepo
           inputSteps:
-            - name: docker_promote
+            - name: test_eks_deploy
         execution:
           onExecute:
             - cd $res_gitRepo_resourcePath
