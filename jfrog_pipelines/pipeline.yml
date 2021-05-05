@@ -2,14 +2,14 @@ resources:
   - name: gitRepo
     type: GitRepo
     configuration:
-      path: jfrogtraining/aws-eks-workshop
-      gitProvider: jefferyfryGithub
+      path: anshrma/aws-eks-workshop
+      gitProvider: GitHub
       branches:
         include: master
   - name: workshop_app_image
     type: Image
     configuration:
-      registry: PartnershipArtifactory
+      registry: Artifactory
       sourceRepository: workshop-docker-local
       imageName: partnership-workshop-docker.jfrog.io/workshop-app
       imageTag: ${run_number}
@@ -17,13 +17,13 @@ resources:
   - name: workshop_build_info
     type: Buildinfo
     configuration:
-      sourceArtifactory: PartnershipArtifactory
+      sourceArtifactory: Artifactory
       buildName: workshop_build
       buildNumber: ${run_number}
   - name: promoted_workshop_build_info
     type: Buildinfo
     configuration:
-      sourceArtifactory: PartnershipArtifactory
+      sourceArtifactory: Artifactory
       buildName: workshop_build
       buildNumber: ${run_number}
 
@@ -41,7 +41,7 @@ pipelines:
           inputResources:
             - name: gitRepo
           integrations:
-            - name: PartnershipArtifactory
+            - name: Artifactory
         execution:
           onStart:
             - cd $res_gitRepo_resourcePath
@@ -58,7 +58,7 @@ pipelines:
           forceXrayScan: true
           targetRepository: workshop-docker-local
           integrations:
-            - name:  PartnershipArtifactory
+            - name:  Artifactory
           inputSteps:
             - name: docker_build
           outputResources:
